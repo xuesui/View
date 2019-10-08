@@ -633,7 +633,7 @@ setAlpha是View中的函数，如果自定义View自己创建新的函数时需�
 
 - propertyValuesHolder例子
 
-  [字母动画]https://github.com/xuesui/View/blob/master/app/src/main/java/com/example/view/activity/PropertyActivity.java)
+  [字母动画](https://github.com/xuesui/View/blob/master/app/src/main/java/com/example/view/activity/PropertyActivity.java)
 
 - keyframe例子
 
