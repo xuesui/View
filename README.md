@@ -575,7 +575,7 @@ setAlpha是View中的函数，如果自定义View自己创建新的函数时需�
 
 #### 2.4.4 示例：路径动画
 
-[路径动画](https://github.com/xuesui/MyView)
+[路径动画](https://github.com/xuesui/View/blob/master/app/src/main/java/com/example/view/activity/PathActivity.java)
 
 ### 2.5 属性动画XML实现
 
@@ -633,11 +633,11 @@ setAlpha是View中的函数，如果自定义View自己创建新的函数时需�
 
 - propertyValuesHolder例子
 
-  [字母动画](https://github.com/xuesui/MyView)
+  [字母动画]https://github.com/xuesui/View/blob/master/app/src/main/java/com/example/view/activity/PropertyActivity.java)
 
 - keyframe例子
 
-  [闹钟动画](https://github.com/xuesui/MyView)
+  [闹钟动画](https://github.com/xuesui/View/blob/master/app/src/main/java/com/example/view/activity/PropertyActivity.java)
 
 ### 3.2 ViewPropertyAnimator
 
@@ -764,6 +764,7 @@ setAnimator的参数：
 - 构造ProvertyValuesHolder动画时，ofInt（），ofFloat（）中的参数值，第一个和最后一个必须相同，否则会被弃用。
 - 构造ProvertyValuesHolder动画时，如果ofInt（），ofFloat（）中的参数值全部相同，将不会有动画效果。
 
+[添加删除控件动画](https://github.com/xuesui/View/blob/master/app/src/main/java/com/example/view/activity/ViewGroupActivity.java)
 ### 3.4 NineOldAndroids开源库动画
 
 对官方的库进行了封装，除了没有LayoutTransition以外，其他几乎完全一样，ViewpropertyAnimator用法有些许不同。
