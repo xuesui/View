@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.PathActivity">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/menu"
+            style="@style/MenuStyle"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/menu" />
+
+        <Button
+            style="@style/MenuItemStyle"
+            android:id="@+id/item1"
+            android:visibility="gone"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/weixin" />
+
+        <Button
+            style="@style/MenuItemStyle"
+            android:id="@+id/item2"
+            android:visibility="gone"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/github" />
+
+        <Button
+            style="@style/MenuItemStyle"
+            android:id="@+id/item3"
+            android:visibility="gone"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/qq" />
+
+        <Button
+            style="@style/MenuItemStyle"
+            android:id="@+id/item4"
+            android:visibility="gone"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/weibo" />
+
+        <Button
+            style="@style/MenuItemStyle"
+            android:id="@+id/item5"
+            android:visibility="gone"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/facebook" />
+
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

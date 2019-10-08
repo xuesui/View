@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">View</string>
+    <string name="path">路径动画</string>
+    <string name="property">Property</string>
+    <string name="ofobject">开始ofObject</string>
+    <string name="keyframe">开始Keyframe</string>
+    <string name="clock">clock</string>
+    <string name="viewpager">viewgroup动画</string>
+    <string name="add">添加</string>
+    <string name="delete">删除</string>
+</resources>
