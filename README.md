@@ -301,7 +301,7 @@ anim.start();
 
 AnimationDrawable类：
 
-![](C:\Users\33106\Desktop\IMG_20190925_195834.jpg)
+![](https://github.com/xuesui/View/blob/master/app/src/main/res/drawable-v24/IMG_20190925_195834.jpg)
 
 
 
