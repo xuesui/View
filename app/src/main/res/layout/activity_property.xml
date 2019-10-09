@@ -40,7 +40,7 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.6" />
 
-    <com.example.view.myview.MyTextView
+    <com.example.view.myview.ofobject.MyTextView
         android:id="@+id/ofobject"
         android:layout_width="80dp"
         android:layout_height="80dp"

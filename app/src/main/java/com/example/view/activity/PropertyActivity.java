@@ -2,7 +2,6 @@ package com.example.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.animation.Animator;
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
@@ -14,7 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.view.R;
-import com.example.view.myview.MyTextView;
+import com.example.view.myview.ofobject.MyTextView;
 import com.example.view.myview.ofobject.CharEvaluator;
 
 public class PropertyActivity extends AppCompatActivity {

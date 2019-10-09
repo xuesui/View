@@ -3,6 +3,8 @@ package com.example.view.activity;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,10 +20,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button buttonPath = findViewById(R.id.btn_path);
         Button buttonProperty = findViewById(R.id.btn_property);
         Button buttonViewGroup = findViewById(R.id.btn_viewgroup);
+        Button buttonPathAnim=findViewById(R.id.btn_path_anim);
 
         buttonPath.setOnClickListener(this);
         buttonProperty.setOnClickListener(this);
         buttonViewGroup.setOnClickListener(this);
+        buttonPathAnim.setOnClickListener(this);
     }
 
     @Override
@@ -39,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent intentViewGroup = new Intent(MainActivity.this, ViewGroupActivity.class);
                 startActivity(intentViewGroup);
                 break;
+            case R.id.btn_path_anim:
+                Intent intentPathAnim = new Intent(MainActivity.this, PathAnimActivity.class);
+                startActivity(intentPathAnim);
             default:
                 break;
         }

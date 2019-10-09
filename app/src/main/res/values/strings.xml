@@ -8,4 +8,7 @@
     <string name="viewpager">viewgroup动画</string>
     <string name="add">添加</string>
     <string name="delete">删除</string>
+    <string name="pay">支付宝支付动画</string>
+    <string name="load">加载效果</string>
+    <string name="payp">支付</string>
 </resources>
