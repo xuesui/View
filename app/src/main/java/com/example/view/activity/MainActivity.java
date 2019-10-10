@@ -20,12 +20,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Button buttonPath = findViewById(R.id.btn_path);
         Button buttonProperty = findViewById(R.id.btn_property);
         Button buttonViewGroup = findViewById(R.id.btn_viewgroup);
-        Button buttonPathAnim=findViewById(R.id.btn_path_anim);
+        Button buttonPathAnim = findViewById(R.id.btn_path_anim);
+        Button buttonSVG=findViewById(R.id.btn_svg);
 
         buttonPath.setOnClickListener(this);
         buttonProperty.setOnClickListener(this);
         buttonViewGroup.setOnClickListener(this);
         buttonPathAnim.setOnClickListener(this);
+        buttonSVG.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.btn_path_anim:
                 Intent intentPathAnim = new Intent(MainActivity.this, PathAnimActivity.class);
                 startActivity(intentPathAnim);
+            case R.id.btn_svg:
+                Intent intentSVG = new Intent(MainActivity.this, SVGActivity.class);
+                startActivity(intentSVG);
             default:
                 break;
         }

@@ -21,23 +21,23 @@ public class PathAnim extends View {
 
     public PathAnim(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        setLayerType(LAYER_TYPE_SOFTWARE,null);
-        paint=new Paint(Paint.ANTI_ALIAS_FLAG);
+        setLayerType(LAYER_TYPE_SOFTWARE, null);
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(4);
         paint.setColor(Color.BLACK);
 
-        path=new Path();
-        dstPath=new Path();
-        path.addCircle(100,100,50,Path.Direction.CW);
+        path = new Path();
+        dstPath = new Path();
+        path.addCircle(100, 100, 50, Path.Direction.CW);
 
-        pathMeasure=new PathMeasure(path,true);
+        pathMeasure = new PathMeasure(path, true);
 
-        ValueAnimator animator=ValueAnimator.ofFloat(0,1);
+        ValueAnimator animator = ValueAnimator.ofFloat(0, 1);
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                curAnimValue= (float) valueAnimator.getAnimatedValue();
+                curAnimValue = (float) valueAnimator.getAnimatedValue();
                 invalidate();
             }
         });
@@ -50,11 +50,11 @@ public class PathAnim extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.drawColor(Color.WHITE);
-        float stop=pathMeasure.getLength() * curAnimValue;
-        float start=(float)(stop - ((0.5-Math.abs(curAnimValue-0.5))*pathMeasure.getLength()));
+        float stop = pathMeasure.getLength() * curAnimValue;
+        float start = (float) (stop - ((0.5 - Math.abs(curAnimValue - 0.5)) * pathMeasure.getLength()));
         dstPath.reset();
-        pathMeasure.getSegment(start,stop,dstPath,true);
-        canvas.drawPath(dstPath,paint);
+        pathMeasure.getSegment(start, stop, dstPath, true);
+        canvas.drawPath(dstPath, paint);
     }
 
 }

@@ -11,4 +11,5 @@
     <string name="pay">支付宝支付动画</string>
     <string name="load">加载效果</string>
     <string name="payp">支付</string>
+    <string name="cin">点击输入</string>
 </resources>
