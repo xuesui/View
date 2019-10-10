@@ -850,3 +850,153 @@ ViewPropertyAnimator.animate(view).setDuration(1000).x(100).y(100).start();
   [加载条](https://github.com/xuesui/View/blob/master/app/src/main/java/com/example/view/myview/pathanim/PathAnim.java)
 
   [支付成功动画](https://github.com/xuesui/View/blob/master/app/src/main/java/com/example/view/myview/pathanim/PayAnim.java)
+  
+  ### 4.2 SVG动画
+
+- SVG的意思就是可缩放矢量图，它的好处在于可以与Path动画相结合，而且内存小，并且不会失真。
+
+- Android中SVG矢量图是使用标签定义的，并存放在res/drawable文件下。
+
+  ```xml
+  <vector xmlns:android="http://schemas.android.com/apk/res/android"
+      android:width="150dp"
+      android:height="24dp"
+      android:viewportWidth="150"
+      android:viewportHeight="24">
+  
+      <path
+          android:name="search"
+          android:pathData="M141,17 A9,9 0 1,1 142,16 L149,23"
+          android:strokeWidth="2"
+          android:strokeColor="@color/colorPrimaryDark" />
+  
+      <path
+          android:name="bar"
+          android:trimPathStart="1"
+          android:pathData="M0,23 L149,23"
+          android:strokeWidth="2"
+          android:strokeColor="@color/colorPrimaryDark" />
+  
+  </vector>
+  ```
+
+  - android:width，android:height：表示此SVG图形具体的大小。
+
+  -    android:viewportWidth，android:viewportHeight：表示把图形分为多少份，之后进行路径操作都是根据份数来操作。
+
+  - path标签：
+
+    | 常用属性                 | 作用                       |
+    | ------------------------ | -------------------------- |
+    | android:name             | 类似于id                   |
+    | android:pathData         | 通过这个来指定图像具体内容 |
+    | android:strokeWidth      | 画笔宽度                   |
+    | android:fillColor        | 填充颜色                   |
+    | android:fillAlpha        | 填充颜色的透明度           |
+    | android:strokeColor      | 描边颜色                   |
+    | android:strokeWidth      | 描边宽度                   |
+    | android:strokeAlpha      | 描边透明度                 |
+    | android:strokeLineJoin   | 指定折线拐角形状           |
+    | android:strokeLineCap    | 画出线条终点的形状         |
+    | android:strokeMiterLimit | 设置斜角的上限             |
+    | android:trimPathStart    | 指定路径从哪里开始         |
+    | android:trimPathEnd      | 指定路径从哪里结束         |
+    | android:trimPathOffset   | 指定路径的位移距离         |
+    |                          |                            |
+
+  - group标签：可以和path组合使用，用于将path分组。
+
+- SVG搜索动画
+
+  - 生成Vector图形代码
+
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:width="150dp"
+        android:height="24dp"
+        android:viewportWidth="150"
+        android:viewportHeight="24">
+    
+        <path
+            android:name="search"
+            android:pathData="M141,17 A9,9 0 1,1 142,16 L149,23"
+            android:strokeWidth="2"
+            android:strokeColor="@color/colorPrimaryDark" />
+    
+        <path
+            android:name="bar"
+            android:trimPathStart="1"
+            android:pathData="M0,23 L149,23"
+            android:strokeWidth="2"
+            android:strokeColor="@color/colorPrimaryDark" />
+    
+    </vector>
+    ```
+
+  - 准备对应动画
+
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+        android:propertyName="trimPathStart"
+        android:valueFrom="0"
+        android:valueTo="1"
+        android:valueType="floatType"
+        android:duration="1000">
+    
+    </objectAnimator>
+    ```
+
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <objectAnimator xmlns:android="http://schemas.android.com/apk/res/android"
+        android:propertyName="trimPathEnd"
+        android:valueFrom="0"
+        android:valueTo="1"
+        android:duration="1000"
+        android:valueType="floatType">
+    
+    </objectAnimator>
+    ```
+
+  - 通过animated-vector标签关联SVG图形与动画
+
+    ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:drawable="@drawable/vector_search_bar"
+        tools:targetApi="lollipop">
+    
+        <target
+            android:animation="@animator/anim_bar_trim_start"
+            android:name="bar" />
+    
+        <target
+            android:animation="@animator/anim_search_trim_end"
+            android:name="search" />
+    
+    </animated-vector>
+    ```
+
+  - 布局中代码开始动画
+
+    ```java
+    AnimatedVectorDrawableCompat animatedVectorDrawableCompat=AnimatedVectorDrawableCompat
+            .create(SVGActivity.this,R.drawable.animated_vector_search);
+    imageView.setImageDrawable(animatedVectorDrawableCompat);
+    ((Animatable) imageView.getDrawable()).start();
+    ```
+
+    为了修复旧版support包的bug，需要在活动添加一个静态代码块。
+
+    ```java
+    static {
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
+    }
+    ```
+
+    这样一个动画就结束了。
+
+    [搜索动画](https://github.com/xuesui/View/blob/master/app/src/main/java/com/example/view/activity/SVGActivity.java)
