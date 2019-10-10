@@ -780,5 +780,73 @@ ViewPropertyAnimator.animate(view).setDuration(1000).x(100).y(100).start();
 
 ## 四、动画进阶
 
-下篇博客再写
+### 4.1 利用PathMeasure实现路径动画
 
+- 初始化 ：
+
+  ```java
+  PathMeasure pathMeasure=new PathMeasure（）;
+  pathMeasure.setPath(Path path,boolean forceClosed);
+  
+  //或者
+  PathMeasure pathMeasure=new PathMeasure（Path path,boolean forceClosed）;
+  ```
+
+- 简单函数：
+
+  |         函数          |       作用       |
+  | :-------------------: | :--------------: |
+  |   float getLength()   |   获取路径长度   |
+  |  boolean isClosed()   | 获取路径是否闭合 |
+  | boolean nextContour() | 跳转到下一条曲线 |
+
+  一条路径中可能存在不同曲线，而getlength等测量函数都是获取当前曲线的长度，不是Path的全部长度，得到曲线的顺序与路径中曲线添加顺序相同。
+
+- getSegment()函数（用于截取路径中的某个片段）：
+
+  (1)基本用法：
+
+  ```java
+  public boolean getSegment(float startD, float stopD, Path dst, boolean startWithMoveTo)
+  ```
+
+  - float startD：开始截取位置距离Path起始点的长度。
+  - float stopD：结束截取位置距离Path起始点的长度。
+  - Path dst：截取的Path将会被**添加**到dst中。
+  - boolean startWithMoveTo：起始点是否使用moveto。
+
+  (2)注意：
+
+  - 如果startD==stopD或者startD和stopD不在【0，getLength】范围中，函数返回false，不会改变dst的内容。
+  - 要使用这个函数，必须关闭硬件加速，在自定义View的构造函数中调用setLayerType（LATER_TYPE_SOFTWARE，null）禁用硬件加速。
+
+  (3)总结：
+
+  - 路径截取是从路径左上角开始的。
+  - 路径截取方向和路径生成方向相同。
+
+- getPosTan()函数（用于获取路径上某一长度的位置以及该位置的正切值）：
+
+  ```java
+  public boolean getPosTan(float distance, float[] pos, float[] tan)
+  ```
+
+  - float distance：距离Path起始点的长度。
+  - float[] pos：该点的坐标值，pos【0】表示x坐标，pos【1】表示y坐标。
+  - float[] tan：该点的正切值，会返回半径为1的圆上对应角度的点的坐标，多利用Math.atan2(double y,double x)函数求出**弧度**。
+
+- getMatrix()函数(用于获取路径上某一长度的位置以及该位置的正切值的矩阵)
+
+  ```java
+  public boolean getMatrix(float distance, Matrix matrix, int flags)
+  ```
+
+  - float distance：距离Path起始点的长度。
+  - Matrix matrix：根据flags封住好的matrix会根据flags的设置而存入不同的内容。
+  - int flags：用于指定哪些内容会存入matrix中。flag的值有两个：PathMeasure.POSITION_MATRIX_FLAG表示获取位置信息；PathMeasure.TANGENT_MATRIX_FLAG表示获取切边信息，使得图片可以按Path旋转。可以只指定一个，也可以用“|”同时指定。
+
+- 例子：
+
+  [加载条](https://github.com/xuesui/View/blob/master/app/src/main/java/com/example/view/myview/pathanim/PathAnim.java)
+
+  [支付成功动画](https://github.com/xuesui/View/blob/master/app/src/main/java/com/example/view/myview/pathanim/PayAnim.java)
